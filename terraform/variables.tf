@@ -16,17 +16,17 @@ variable "acr_name" {
 
 variable "container_group_name" {
   type    = string
-  default = "ContainerGroup-devops-test"
+  default = "containerGroup-devops-test"
 }
 
 variable "container_name" {
   type    = string
-  default = "LittleAppContainer"
+  default = "littleapp-container"
 }
 
 variable "container_image" {
   type    = string
-  default = "LittleAppIamge"
+  default = "littleApp-iamge"
 }
 
 variable "container_image_tag" {
