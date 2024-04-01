@@ -26,7 +26,7 @@ variable "container_name" {
 
 variable "container_image" {
   type    = string
-  default = "littleapp-image"
+  default = "littleapp"
 }
 
 variable "container_image_tag" {
