@@ -11,7 +11,7 @@ variable "location" {
 
 variable "acr_name" {
   type    = string
-  default = "ContainerRegistrydevopstest"
+  default = "containerregistrydevopstest"
 }
 
 variable "container_group_name" {
