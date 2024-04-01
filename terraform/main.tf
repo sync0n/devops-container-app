@@ -7,7 +7,7 @@ resource "azurerm_container_registry" "acr" {
   resource_group_name = var.resource_group_name
   location            = var.location
   sku                 = "Basic"
-  admin_enabled       = false
+  admin_enabled       = true
 }
 
 resource "azurerm_container_group" "cg" {
@@ -29,4 +29,12 @@ resource "azurerm_container_group" "cg" {
   }
 
   ip_address_type = "Public"
+
+  image_registry_credential {
+    server   = azurerm_container_registry.acr.login_server
+    username = azurerm_container_registry.acr.admin_username
+    password = azurerm_container_registry.acr.admin_password
+    
+  }
+
 }

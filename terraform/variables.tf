@@ -16,7 +16,7 @@ variable "acr_name" {
 
 variable "container_group_name" {
   type    = string
-  default = "containerGroup-devops-test"
+  default = "containergroup-devops-test"
 }
 
 variable "container_name" {
