@@ -32,12 +32,8 @@ jobs:
       run: terraform init
       working-directory: ./terraform
 
-    - name: Terraform Plan
-      run: terraform plan
-      working-directory: ./terraform
-
-    - name: Terraform Apply
-      run: terraform apply -auto-approve
+    - name: Terraform Apply for ACR
+      run: terraform apply -target=azurerm_container_registry.acr -auto-approve
       working-directory: ./terraform
       env:
         ARM_CLIENT_ID: ${{ env.ARM_CLIENT_ID }}
@@ -51,12 +47,11 @@ jobs:
         docker build -t ${{ secrets.ACR_NAME }}.azurecr.io/littleapp:latest ./src
         docker push ${{ secrets.ACR_NAME }}.azurecr.io/littleapp:latest
 
-
-    # - name: Destroy Terraform Resources
-    #   run: terraform destroy -auto-approve
-    #   working-directory: ./terraform
-    #   env:
-    #     ARM_CLIENT_ID: ${{ env.ARM_CLIENT_ID }}
-    #     ARM_CLIENT_SECRET: ${{ env.ARM_CLIENT_SECRET }}
-    #     ARM_SUBSCRIPTION_ID: ${{ env.ARM_SUBSCRIPTION_ID }}
-    #     ARM_TENANT_ID: ${{ env.ARM_TENANT_ID }}
+    - name: Terraform Apply for ACI
+      run: terraform apply -auto-approve
+      working-directory: ./terraform
+      env:
+        ARM_CLIENT_ID: ${{ env.ARM_CLIENT_ID }}
+        ARM_CLIENT_SECRET: ${{ env.ARM_CLIENT_SECRET }}
+        ARM_SUBSCRIPTION_ID: ${{ env.ARM_SUBSCRIPTION_ID }}
+        ARM_TENANT_ID: ${{ env.ARM_TENANT_ID }}
