@@ -48,8 +48,8 @@ jobs:
     - name: Build and push Docker image to Azure Container Registry
       run: |
         az acr login --name ${{ secrets.ACR_NAME }}
-        docker build -t ${{ secrets.ACR_NAME }}.azurecr.io/Littleapp:latest ./src
-        docker push ${{ secrets.ACR_NAME }}.azurecr.io/Littleapp:latest
+        docker build -t ${{ secrets.ACR_NAME }}.azurecr.io/littleapp:latest ./src
+        docker push ${{ secrets.ACR_NAME }}.azurecr.io/littleapp:latest
 
 
     # - name: Destroy Terraform Resources
