@@ -21,12 +21,12 @@ variable "container_group_name" {
 
 variable "container_name" {
   type    = string
-  default = "LittleApp-container"
+  default = "LittleAppContainer"
 }
 
 variable "container_image" {
   type    = string
-  default = "LittleApp-iamge"
+  default = "LittleAppIamge"
 }
 
 variable "container_image_tag" {

@@ -25,16 +25,36 @@ This project includes a simple Flask application (`app.py`) that returns a welco
 
 ## Setting Up
 
+To generate the secrets for the principal, run:
+
+az ad sp create-for-rbac --name "APP-NAME" --role Contributor --scopes /subscriptions/<subscriuption ID>/resourceGroups/<resourceGroups ID>
+
+This generates json containing the secrets in the following format:
+
+{
+  "appId": "Some-app-ID-b239-7e2a1c0a18ee",
+  "displayName": "appname",
+  "password": "Some-password-0R2UbqkaIIpBc0PFOUGXX1c0c",
+  "tenant": "Some-tenant-iID-c42-743f2c6474ba"
+}
+
 ### Configuring GitHub Secrets
 
 In GitHub repository add the following secrets:
 
-- `AZURE_CREDENTIALS`: JSON output from creating the Service Principal.
-- `ARM_CLIENT_ID`: The `appId` from the JSON output.
-- `ARM_CLIENT_SECRET`: The `password` from the JSON output.
-- `ARM_SUBSCRIPTION_ID`:  Azure subscription ID.
-- `ARM_TENANT_ID`: The `tenant` from the JSON output.
-- `ACR_NAME`: name of your Azure Container Registry.
+SERVICE_PRINCIPAL_APP_ID > Add appId from az ad sp create-for-rbac command output.
+SERVICE_PRINCIPAL_PASSWORD > Password from create-for-rbac.
+SERVICE_PRINCIPAL_TENANT_ID > Tenant from create-for-rbac.
+AZURE_SUBSCRIPTION_ID > Subscription ID.
+
+AZURE_CREDENTIALS > add in the JSON format: 
+
+{
+  "clientId": "<SERVICE_PRINCIPAL_APP_ID>",
+  "clientSecret": "<SERVICE_PRINCIPAL_PASSWORD>",
+  "subscriptionId": "<AZURE_SUBSCRIPTION_ID>",
+  "tenantId": "<SERVICE_PRINCIPAL_TENANT_ID>"
+}
 
 ## Deploying with CI/CD
 
